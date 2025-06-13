@@ -19,28 +19,15 @@ function App() {
   const [tasks, setTasks] = useState(initialTasks);
 
   const toggleTaskComplete = (id) => {
-    setTasks( tasks => {
+    setTasks(tasks => {
       return tasks.map( task => {
         if(task.id === id){
-          return !task.isComplete;
+          task.isComplete = !task.isComplete;
         }
+        return task;
       });
     });
   };
-
-  // const toggleTaskComplete = (id) => {
-  //   // copy state of `tasks` into a new variable which can be changed and set as new/updated state of `tasks`
-  //   const newStateOfTasks = [...tasks];
-
-  //   // array.find( anonymous arrow function which returns `true` or `false` for each item in the array )
-  //   const indexOfTaskToAlter = newStateOfTasks.findIndex((task) => id === task.id);
-
-  //   // toggle the boolean state of the relevant task's `isComplete` property
-  //   newStateOfTasks[indexOfTaskToAlter].isComplete = !newStateOfTasks[indexOfTaskToAlter].isComplete;
-
-  //   // actually change `tasks`
-  //   setTasks(newStateOfTasks);
-  // };
 
   const deleteTask = (id) => {
     setTasks(tasks => {
