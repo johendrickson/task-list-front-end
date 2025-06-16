@@ -18,6 +18,7 @@ const initialTasks = [
 function App() {
   const [tasks, setTasks] = useState(initialTasks);
 
+  console.log('should throw a merge conflict')
   const toggleTaskComplete = (id) => {
     setTasks(tasks => {
       return tasks.map( task => {
@@ -28,7 +29,7 @@ function App() {
       });
     });
   };
-
+  
   const deleteTask = (id) => {
     setTasks(tasks => {
       return tasks.filter(task => {
