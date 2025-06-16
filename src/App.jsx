@@ -19,6 +19,7 @@ function App() {
   const [tasks, setTasks] = useState(initialTasks);
 
   console.log('hopefully Laura will see this');
+  console.log('testing testing');
   const toggleTaskComplete = (id) => {
     setTasks(tasks => {
       return tasks.map( task => {
