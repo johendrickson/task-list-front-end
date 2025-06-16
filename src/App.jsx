@@ -22,7 +22,8 @@ function App() {
     setTasks(tasks => {
       return tasks.map(task => {
         if(task.id === id){
-          return {...task, isComplete: !task.isComplete};
+          task.isComplete = !task.isComplete;
+          // Logic not working on toggle ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         };
         return task;
       });
