@@ -19,23 +19,33 @@ function App() {
   const [tasks, setTasks] = useState(initialTasks);
 
   const toggleTaskComplete = (id) => {
-    setTasks(tasks => {
-      return tasks.map( task => {
-        if(task.id === id){
-          task.isComplete = !task.isComplete;
-        }
-        return task;
-      });
-    });
+    // copy state of `tasks` into a new variable which can be changed and set as new/updated state of `tasks`
+    const newStateOfTasks = [...tasks];
+
+    // array.find( anonymous arrow function which returns `true` or `false` for each item in the array )
+    const indexOfTaskToAlter = newStateOfTasks.findIndex((task) => id === task.id);
+
+    // toggle the boolean state of the relevant task's `isComplete` property
+    newStateOfTasks[indexOfTaskToAlter].isComplete = !newStateOfTasks[indexOfTaskToAlter].isComplete;
+
+    // actually change `tasks`
+    setTasks(newStateOfTasks);
   };
 
   const deleteTask = (id) => {
-    setTasks(tasks => {
-      return tasks.filter(task => {
-        return task.id !== id;
-      });
-    });
+    // copy state of `tasks` into a new variable which can be changed and set as new/updated state of `tasks`
+    const newStateOfTasks = [...tasks];
+
+    // array.find( anonymous arrow function which returns `true` or `false` for each item in the array )
+    const indexOfTaskToAlter = newStateOfTasks.findIndex((task) => id === task.id);
+
+    // remove the indicated task from new/updated state of `tasks`
+    newStateOfTasks.splice(indexOfTaskToAlter, 1);
+
+    // actually change `tasks`
+    setTasks(newStateOfTasks);
   };
+
 
   return (
     <div className='App'>
