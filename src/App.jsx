@@ -37,18 +37,13 @@ function App() {
       });
   }, []);
 
-
-
   const toggleTaskComplete = (id) => {
     // copy state of `tasks` into a new variable which can be changed and set as new/updated state of `tasks`
     const newStateOfTasks = [...tasks];
-
     // array.find( anonymous arrow function which returns `true` or `false` for each item in the array )
     const indexOfTaskToAlter = newStateOfTasks.findIndex((task) => id === task.id);
-
     // toggle the boolean state of the relevant task's `isComplete` property
     newStateOfTasks[indexOfTaskToAlter].isComplete = !newStateOfTasks[indexOfTaskToAlter].isComplete;
-
     // actually change `tasks`
     setTasks(newStateOfTasks);
   };
@@ -63,7 +58,6 @@ function App() {
         console.error('Error deleting task:', err);
       });
   };
-
 
   return (
     <div className='App'>
