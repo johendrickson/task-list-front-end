@@ -1,6 +1,9 @@
 import TaskList from './components/TaskList.jsx';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const baseUrl = 'http://127.0.0.1:5000/api';
 
 const initialTasks = [
   {
