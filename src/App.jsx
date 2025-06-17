@@ -54,17 +54,14 @@ function App() {
   };
 
   const deleteTask = (id) => {
-    // copy state of `tasks` into a new variable which can be changed and set as new/updated state of `tasks`
-    const newStateOfTasks = [...tasks];
-
-    // array.find( anonymous arrow function which returns `true` or `false` for each item in the array )
-    const indexOfTaskToAlter = newStateOfTasks.findIndex((task) => id === task.id);
-
-    // remove the indicated task from new/updated state of `tasks`
-    newStateOfTasks.splice(indexOfTaskToAlter, 1);
-
-    // actually change `tasks`
-    setTasks(newStateOfTasks);
+    axios.delete(`${API_BASE_URL}/${id}`)
+      .then(() => {
+        // Remove task from local state after successful deletion
+        setTasks(tasks.filter(task => task.id !== id));
+      })
+      .catch(err => {
+        console.error('Error deleting task:', err);
+      });
   };
 
 
