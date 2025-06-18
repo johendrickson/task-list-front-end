@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Task from './Task.jsx';
 import './TaskList.css';
 
-const TaskList = ({ tasks, onToggleTask, onDeleteTask }) => {
+const TaskList = ({ allTasks, onToggleTask, onDeleteTask }) => {
   const getTaskListJSX = (tasks) => {
     return tasks.map((task) => {
       return (
@@ -20,13 +20,13 @@ const TaskList = ({ tasks, onToggleTask, onDeleteTask }) => {
 
   return (
     <ul className="tasks__list no-bullet">
-      {getTaskListJSX(tasks)}
+      {getTaskListJSX(allTasks)}
     </ul>
   );
 };
 
 TaskList.propTypes = {
-  tasks: PropTypes.arrayOf(
+  allTasks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
