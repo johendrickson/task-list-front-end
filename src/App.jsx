@@ -1,4 +1,5 @@
 import axios from 'axios';
+import NewTaskForm from './components/NewTaskForm';
 import TaskList from './components/TaskList.jsx';
 import './App.css';
 import { useState, useEffect } from 'react';
@@ -30,7 +31,7 @@ function App() {
 
     axios.patch(`${API_BASE_URL}/${id}/${tasks[indexOfTaskToAlter].isComplete ? 'mark_incomplete' : 'mark_complete'}`)
       .then(() => {
-        // copy state of `tasks` into a new variable which can be changed and set as new/updated state of `tasks`
+      // copy state of `tasks` into a new variable which can be changed and set as new/updated state of `tasks`
         const newStateOfTasks = [...tasks];
         // toggle the boolean state of the relevant task's `isComplete` property
         newStateOfTasks[indexOfTaskToAlter].isComplete = !newStateOfTasks[indexOfTaskToAlter].isComplete;
@@ -42,16 +43,26 @@ function App() {
       });
   };
 
-
   const deleteTask = (id) => {
     axios.delete(`${API_BASE_URL}/${id}`)
       .then(() => {
-        // Remove task from local state after successful deletion
+      // Remove task from local state after successful deletion
         const allTasksMinusDeletedTask = tasks.filter(task => task.id !== id);
         setTasks(allTasksMinusDeletedTask);
       })
       .catch(err => {
         console.error('Error deleting task:', err);
+      });
+  };
+
+  const addTask = (taskData) => {
+    axios.post(API_BASE_URL, taskData)
+      .then((response) => {
+        const updatedTasks = [...tasks, response.data];
+        setTasks(updatedTasks);
+      })
+      .catch(err => {
+        console.error('Error adding task:', err);
       });
   };
 
@@ -61,6 +72,10 @@ function App() {
         <h1>Ada&apos;s Task List</h1>
       </header>
       <main>
+        <NewTaskForm
+          onTaskSubmit={addTask}
+        />
+
         <TaskList
           tasks={tasks}
           onToggleTask={toggleTaskComplete}
