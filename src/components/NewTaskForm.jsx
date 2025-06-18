@@ -7,6 +7,7 @@ const newTask = {
 };
 const NewTaskForm = ({ addTask }) => {
   const [taskData, setTaskData] = useState({});
+
   const handleChange = (event) => {
     preventDefault();
     const value = event.target.value;
@@ -22,7 +23,7 @@ const NewTaskForm = ({ addTask }) => {
       <input
         type="text"
         id={taskDate.id} />
-        id={taskDate.title} />
+        ={taskDate.title} />
         onChange={handleChange} />
     </form>
 
