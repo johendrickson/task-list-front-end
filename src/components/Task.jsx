@@ -25,9 +25,9 @@ const Task = ({id, title, isComplete, onToggleTask, onDeleteTask}) => {
 Task.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  isComplete: PropTypes.bool.isRequired,
-  onToggleTask: PropTypes.func.isRequired,
-  onDeleteTask: PropTypes.func.isRequired,
+  isComplete: PropTypes.bool,
+  onToggleTask: PropTypes.func,
+  onDeleteTask: PropTypes.func,
 };
 
 export default Task;

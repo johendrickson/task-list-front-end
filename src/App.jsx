@@ -3,23 +3,31 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const baseUrl = 'http://127.0.0.1:5000/api';
+const baseUrl = 'http://127.0.0.1:5000';
 
-const initialTasks = [
-  {
-    id: 1,
-    title: 'Mow the lawn',
-    isComplete: false,
-  },
-  {
-    id: 2,
-    title: 'Cook Pasta',
-    isComplete: true,
-  },
-];
+const convertFromApi = (task) => {
+  const { id, title, description, is_complete: isComplete } = task;
+  return {id, title, description, isComplete};
+};
 
+const getAllTasksApi = () => {
+  axios.get(`${baseUrl}/tasks`)
+    .then(response => {
+      const newT = response.data.map(convertFromApi);
+      console.log(typeof newT);
+      return newT;
+    })
+    .catch(error => {
+      console.error('Error getting tasks:', error);
+    });
+};
 function App() {
-  const [tasks, setTasks] = useState(initialTasks);
+  const [tasks, setTasks] = useState([]);
+  useEffect(() => {
+    const newTasks = getAllTasksApi(); // This returns a list of objects, but it's JSON, how do I fix this?
+    console.log(newTasks);
+    return setTasks(newTasks);
+  }, [tasks]);
 
   const toggleTaskComplete = (id) => {
     setTasks(tasks => {
