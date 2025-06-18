@@ -16,6 +16,7 @@ function App() {
   useEffect(() => {
     axios.get(`${API_BASE_URL}`)
       .then((response) => {
+        console.log(response.data);
         const tasksFromApi = response.data.map(taskApiToJson);
         setTasks(tasksFromApi);
       })
