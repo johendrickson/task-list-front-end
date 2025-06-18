@@ -9,5 +9,14 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     setupFiles: ['./vitest.setup.js']
-  }
+  }, 
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true, 
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
 })
