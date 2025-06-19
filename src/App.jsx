@@ -4,7 +4,8 @@ import TaskList from './components/TaskList.jsx';
 import './App.css';
 import { useState, useEffect } from 'react';
 
-const API_BASE_URL = 'http://localhost:5000/tasks';
+const API_BASE_URL = 'http://127.0.0.1:5000/tasks'; // Laura flask server
+// const API_BASE_URL = 'http://localhost:5000/tasks';
 
 const taskApiToJson = (task) => {
   const {description, id, is_complete: isComplete, title} = task;
@@ -60,6 +61,8 @@ function App() {
     axios.post(API_BASE_URL, taskData)
       .then((response) => {
         const updatedTasks = [...tasks, response.data];
+        console.log('This is inside the post req');
+        console.log(updatedTasks);
         setTasks(updatedTasks);
       })
       .catch(err => {

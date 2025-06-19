@@ -7,11 +7,12 @@ const NewTaskForm = ({ onTaskSubmit }) => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    setTaskData({...taskData, [e.target.value]: e.target.value});
+    setTaskData({...taskData, [e.target.name]: e.target.value});
   };
 
   const handleSubmit = (e) =>{
     e.preventDefault();
+    console.log(taskData)
     onTaskSubmit(taskData);
   };
   return (
