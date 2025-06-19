@@ -2,8 +2,12 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './NewTaskForm.css';
 
+const newTask = {
+  title:'',
+  description:''
+}
 const NewTaskForm = ({ onTaskSubmit }) => {
-  const [taskData, setTaskData] = useState({});
+  const [taskData, setTaskData] = useState(newTask);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -12,8 +16,8 @@ const NewTaskForm = ({ onTaskSubmit }) => {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    console.log(taskData)
     onTaskSubmit(taskData);
+    setTaskData(newTask);
   };
   return (
     <form onSubmit={handleSubmit}>
