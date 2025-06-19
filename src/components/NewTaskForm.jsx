@@ -1,42 +1,43 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import './NewTaskForm.css';
 
-const newTask = {
-  title: '',
-  description: ''
-};
-const NewTaskForm = ({ addTask }) => {
+const NewTaskForm = ({ onTaskSubmit }) => {
   const [taskData, setTaskData] = useState({});
 
-  const handleChange = (event) => {
-    preventDefault();
-    const value = event.target.value;
-    return value;
+  const handleChange = (e) => {
+    e.preventDefault();
+    setTaskData({...taskData, [e.target.value]: e.target.value});
   };
-  const onSubmit = (event) =>{
-    preventDefault();
-    // Placeholder for addTask
-  }
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    onTaskSubmit(taskData);
+  };
   return (
-    <form typeof='submit'>
-      <label htmlFor='title'>New Task: </label>
-      <input
-        type="text"
-        id={taskDate.id} />
-        ={taskDate.title} />
-        onChange={handleChange} />
+    <form onSubmit={handleSubmit}>
+      <section className='new-task-form'>
+        <label htmlFor='title'>New Task</label>
+        <input
+          id='title'
+          name='title'
+          value={taskData.title}
+          onChange={handleChange} />
+        <label htmlFor='description'>Description</label>
+        <input
+          id='description'
+          name='description'
+          value={taskData.description}
+          onChange={handleChange} />
+        <button type='submit'>⊕</button>
+      </section>
     </form>
 
-  // wrapper - form type =submit
-  // a label, and input for title
-  // a label and input for description
-  // each includes following attributes: htmlFor, name, value, onChange
-  // button to submit, attribute: onSubmit
   );
 };
 
-// NewTaskForm.propTypes = {
-//   needs function name : PropTypes.func.isRequired,
-// };
+NewTaskForm.propTypes = {
+  onTaskSubmit : PropTypes.func.isRequired,
+};
 
-export default NewStudentForm;
+export default NewTaskForm;

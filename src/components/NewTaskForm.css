@@ -1,0 +1,17 @@
+.new-task-form {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px;
+}
+
+.new-task-form > label, 
+.new-task-form > input,
+.new-task-form > button{
+    margin: 5px;
+    padding: 5px;
+}
+
+
+
