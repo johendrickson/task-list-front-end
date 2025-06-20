@@ -60,10 +60,13 @@ function App() {
   const addTask = (taskData) => {
     axios.post(API_BASE_URL, taskData)
       .then((response) => {
-        const updatedTasks = [...tasks, response.data];
-        console.log('This is inside the post req');
-        console.log(updatedTasks);
-        setTasks(updatedTasks);
+        // const updatedTasks = [...tasks, taskApiToJson(response.data)];
+        // console.log('This is inside the post req');
+        // console.log(updatedTasks);
+        // setTasks(updatedTasks);
+        setTasks((tasks) => {
+          return [...tasks, taskApiToJson(response.data)];
+        });
       })
       .catch(err => {
         console.error('Error adding task:', err);

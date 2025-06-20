@@ -5,12 +5,13 @@ import './NewTaskForm.css';
 const newTask = {
   title:'',
   description:''
-}
+};
+
 const NewTaskForm = ({ onTaskSubmit }) => {
   const [taskData, setTaskData] = useState(newTask);
 
   const handleChange = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setTaskData({...taskData, [e.target.name]: e.target.value});
   };
 
